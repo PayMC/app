@@ -1,0 +1,6 @@
+# Node
+node_modules/
+npm-debug.log
+
+# Editor-specific files and directories
+.idea/

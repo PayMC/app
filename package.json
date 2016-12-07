@@ -1,0 +1,36 @@
+{
+  "name": "paymc-app",
+  "version": "0.1.0",
+  "description": "A free, hostable, open source payment system for those wanting an online presence, or improve their existing one.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PayMC/app.git"
+  },
+  "keywords": [
+    "paymc",
+    "minecraft",
+    "mc"
+  ],
+  "maintainers": [
+    {
+      "name": "mattrick",
+      "email": "social@mattrick.me",
+      "url": "https://github.com/devmattrick"
+    }
+  ],
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/PayMC/app/issues"
+  },
+  "homepage": "https://github.com/PayMC/app#readme",
+  "dependencies": {
+    "ejs": "^2.5.5",
+    "express": "^4.14.0",
+    "passport": "^0.3.2",
+    "socket.io": "^1.7.1"
+  }
+}
