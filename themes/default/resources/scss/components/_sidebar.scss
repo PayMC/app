@@ -1,0 +1,63 @@
+@import "../variables";
+
+.sidebar {
+  max-width: $sidebar-width;
+  width: 100%;
+  background-color: $background-accent;
+  height: 100vh;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-in-out;
+
+  .sidebar-image {
+    width: $sidebar-width;
+    height: $sidebar-width;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: $background-accent;
+  }
+
+  nav {
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        a {
+          display: block;
+          text-decoration: none;
+          color: #FFF;
+          font-size: 30px;
+          line-height: $sidebar-width;
+          text-align: center;
+          box-sizing: border-box;
+          position: relative;
+        }
+
+        &.active a {
+          background-color: $primary;
+
+          &:before {
+            display: block;
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid $primary;
+          }
+        }
+      }
+    }
+  }
+
+  @media(max-width: 1300px) {
+    position: fixed;
+    left: -$sidebar-width;
+
+    &.slide-out {
+      transform: translateX($sidebar-width);
+    }
+  }
+}

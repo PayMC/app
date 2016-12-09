@@ -1,0 +1,27 @@
+//Import components
+@import "components/_form";
+@import "components/_global";
+@import "components/_button";
+
+@import "pages/admin/dashboard";
+@import "pages/admin/login";
+
+.page-wrap {
+  display: flex;
+  flex-direction: row;
+
+  .main-content {
+    flex: 1;
+    padding-top: 110px;
+    padding-left: 30px;
+    padding-right: 30px;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    @media (max-width: 796px) {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+}

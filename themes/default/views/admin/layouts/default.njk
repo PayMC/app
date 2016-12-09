@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{{ pageTitle }}</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- All temp; will change when done theming -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/public/admin.css">
+
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="page-wrap">
+      {% include "admin/partials/navbar.njk" %}
+      {% include "admin/partials/sidebar.njk" %}
+
+      <div class="main-content">
+        {% block content %}
+        {% endblock %}
+      </div>
+
+      {% include "admin/partials/footer.njk" %}
+    </div>
+  </body>
+</html>

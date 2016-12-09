@@ -4,7 +4,8 @@
   "description": "A free, hostable, open source payment system for those wanting an online presence, or improve their existing one.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "app-dev": "nodemon -w * app.js --ext \".js|.njk\"",
+    "sass-dev": "node-sass -w -r themes/default/resources/scss/ -o public"
   },
   "repository": {
     "type": "git",
@@ -28,8 +29,8 @@
   },
   "homepage": "https://github.com/PayMC/app#readme",
   "dependencies": {
-    "ejs": "^2.5.5",
     "express": "^4.14.0",
+    "nunjucks": "^3.0.0",
     "passport": "^0.3.2",
     "socket.io": "^1.7.1"
   }

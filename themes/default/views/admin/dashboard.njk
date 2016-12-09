@@ -1,0 +1,158 @@
+{% extends "admin/layouts/default.njk" %}
+
+{# Set variables for this view #}
+{% set page = "index" %}
+{% set pageTitle = "Admin Dashboard" %}
+
+{% block head %}
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+{% endblock %}
+
+{% block content %}
+
+  <div class="grid-3_xs-1">
+    <div class="col-6_sm-12">
+      <div class="chart-wrapper card">
+        <div id="incomeChart">
+          <div class="overlay-text">You've made <span class="emphasize">$2000</span> this month</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6_sm-12">
+      <div class="card card-padded">
+        <h1>Recent Purchases</h1>
+        <table id="purchases">
+          <thead>
+            <tr>
+              <td>User</td>
+              <td>Package</td>
+              <td>Status</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><img class="mc-avatar" src="http://cravatar.eu/avatar/WuffyDabbins/64.png"> WuffyDabbins</td>
+              <td>MVP Rank</td>
+              <td><span class="label completed">Completed</span></td>
+            </tr>
+            <tr>
+              <td><img class="mc-avatar" src="http://cravatar.eu/avatar/TheMojangAdmin/64.png"> TheMojangAdmin</td>
+              <td>MVP Rank</td>
+              <td><span class="label pending">Pending</span></td>
+            </tr>
+            <tr>
+              <td><img class="mc-avatar" src="http://cravatar.eu/avatar/hintss/64.png"> hintss</td>
+              <td>VIP Rank</td>
+              <td><span class="label failed">Failed</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-6_sm-12">
+      <h1>boop</h1>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var margin = {top: 150, right: 0, bottom: 0, left: 0},
+      width = 1000 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+    console.log(width);
+
+    var x = d3.scaleLinear().range([0, width]);
+    var y = d3.scaleLinear().range([height, 0]);
+
+    var valueline = d3.line()
+      .x(function (d) {
+        return x(d.month);
+      })
+      .y(function (d) {
+        return y(d.income);
+      });
+
+    var arealine = d3.area()
+      .x(function (d) {
+        return x(d.month);
+      })
+      .y0(function (d) {
+        return height;
+      })
+      .y1(function (d) {
+        return y(d.income);
+      });
+
+    var svg = d3.select("#incomeChart").append("svg")
+    //.attr("width", width + margin.left + margin.right)
+    //.attr("height", height + margin.top + margin.bottom);
+      .attr("viewBox", "0 0 " + width + " " + (height + 100))
+      .attr("preserveAspectRatio", "none");
+
+    var defs = svg.append("defs");
+
+    var linearGradient = defs.append("linearGradient")
+      .attr("id", "fade")
+      .attr("gradientTransform", "rotate(90)");
+
+    linearGradient.append("stop")
+      .attr("offset", "20%")
+      .attr("stop-color", "#168cff")
+      .attr("stop-opacity", "0.2");
+
+    linearGradient.append("stop")
+      .attr("offset", "80%")
+      .attr("stop-color", "#168cff")
+      .attr("stop-opacity", "0");
+
+    var g = svg.append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // get the data
+    d3.csv("/public/data.csv", function (error, data) {
+      if (error) throw error;
+
+      // format the data
+      data.forEach(function (d) {
+        d.month = +d.month;
+        d.income = +d.income;
+      });
+
+      // scale the range of the data
+      x.domain(d3.extent(data, function (d) {
+        return d.month;
+      }));
+      y.domain([0, d3.max(data, function (d) {
+        return d.income;
+      })]);
+
+      // add the valueline path.
+      g.append("path")
+        .data([data])
+        .attr("class", "line")
+        .attr("d", valueline);
+
+      g.append("path")
+        .data([data])
+        .attr("class", "area")
+        .attr("fill", "url(#fade)")
+        .attr("d", arealine);
+
+      var dotData = data;
+      dotData.shift();
+      dotData.pop();
+
+      g.selectAll("dot")
+        .data(dotData)
+        .enter().append("circle")
+        .attr("class", "point")
+        .attr("r", 4)
+        .attr("cx", function (d) {
+          return x(d.month);
+        })
+        .attr("cy", function (d) {
+          return y(d.income);
+        });
+    });
+
+  </script>
+{% endblock %}

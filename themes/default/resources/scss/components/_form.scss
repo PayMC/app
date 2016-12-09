@@ -1,0 +1,49 @@
+@import "../variables";
+
+form {
+  .input-group {
+    margin: 1em 0;
+  }
+
+  .material-input {
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0.5px;
+      height: 1px;
+      width: 100%;
+      background-color: transparentize(#333, 0.8);
+    }
+
+    span {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      width: 100%;
+      max-width: 0;
+      transition: max-width 0.2s ease-in-out;
+      background-color: $primary;
+    }
+
+    input:focus ~ span {
+      max-width: 100%;
+    }
+
+    input[type=text], input[type=password], textarea {
+      border: none;
+      outline: none;
+      display: block;
+      padding: 0.5em;
+      font-size: 1.2em;
+      background: transparent;
+      width: 100%;
+    }
+  }
+}

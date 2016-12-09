@@ -1,6 +1,17 @@
-# Node
+# Ignore "compiled" files
+public/*
+!public/.gitkeep
+
+# Ignore all themes except the default
+themes/**
+!themes/default
+
+# Ignore vendor directories (like in themes)
+**/vendor/**
+
+# Ignore node-related files
 node_modules/
 npm-debug.log
 
-# Editor-specific files and directories
+# Ignore editor-specific files and directories
 .idea/

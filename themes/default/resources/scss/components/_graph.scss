@@ -1,0 +1,29 @@
+.line {
+  fill: none;
+  stroke: $primary;
+  stroke-width: 3px;
+  stroke-linecap: square;
+}
+
+.point {
+  fill: $primary;
+}
+
+.overlay-text {
+  color: #FFF;
+  font-size: 40px;
+  font-weight: 300;
+
+  .emphasize {
+    color: $primary;
+  }
+}
+
+.grid {
+  line, path {
+    stroke: darken($background, 2%);
+  }
+  text {
+    fill: #fff;
+  }
+}

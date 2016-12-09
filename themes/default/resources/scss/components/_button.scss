@@ -1,0 +1,23 @@
+@import "../variables";
+
+.btn {
+  border: none;
+  padding: 0.5em 0.7em;
+  background-color: $primary;
+  color: #FFF;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease-out, background-color 0.2s ease-out;
+
+  &:hover {
+    background-color: lighten($primary, 5%);
+    box-shadow: 0 0 0 8px transparentize($primary, 0.8);
+  }
+
+  &.btn-lg {
+    font-size: 1.5em;
+  }
+  &.btn-block {
+    display: block;
+    width: 100%;
+  }
+}
