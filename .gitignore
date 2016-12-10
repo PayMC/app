@@ -12,6 +12,7 @@ themes/**
 # Ignore node-related files
 node_modules/
 npm-debug.log
+.eslintcache
 
 # Ignore editor-specific files and directories
 .idea/

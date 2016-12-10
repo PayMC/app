@@ -4,6 +4,7 @@
   "description": "A free, hostable, open source payment system for those wanting an online presence, or improve their existing one.",
   "main": "app.js",
   "scripts": {
+    "test": "eslint --cache .",
     "app-dev": "nodemon -w * app.js --ext \".js|.njk\"",
     "sass-dev": "node-sass -w -r themes/default/resources/scss/ -o public"
   },
@@ -33,5 +34,8 @@
     "nunjucks": "^3.0.0",
     "passport": "^0.3.2",
     "socket.io": "^1.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.12.0"
   }
 }
